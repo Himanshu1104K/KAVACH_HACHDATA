@@ -1,0 +1,53 @@
+.logP {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.logP h1 {
+  font-variant-caps: all-petite-caps;
+  font-weight: bold;
+  font-size: 4rem;
+}
+.logBox {
+  background-color: #f8f3d946;
+  display: flex;
+  width: 450px;
+  height: 400px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 40px;
+  border-radius: 20px;
+}
+
+.logBox h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-variant-caps: all-petite-caps;
+}
+
+.logBox input {
+  width: 80%;
+  font-size: 1.4rem;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #504b38;
+}
+
+.logBox button {
+  font-size: 1.3rem;
+  padding: 5px 40px;
+}
+.mainDH {
+  font-variant-caps: all-petite-caps;
+  font-weight: bold;
+}
+.cardBtn {
+  padding: 3px 5px;
+  font-size: 0.8rem;
+}
