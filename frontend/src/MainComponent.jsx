@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
+import Tactics from "./pages/Tactics";
 import { createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainDash from "./pages/MainDash";
@@ -36,6 +37,10 @@ function MainComponent() {
               <Route
                 path="/SingleSol/:id"
                 element={isAutenticated ? <SingleSol /> : <LoginPage />}
+              />
+              <Route
+                path="/tactics"
+                element={isAutenticated ? <Tactics /> : <LoginPage />}
               />
             </Routes>
           </AuthContext.Provider>

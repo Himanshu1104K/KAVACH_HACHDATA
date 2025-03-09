@@ -50,8 +50,8 @@ const NavBar = () => {
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="block py-2 px-3 md:p-0 rounded-sm">
-                Contact
+              <Link to="/tactics" className="block py-2 px-3 md:p-0 rounded-sm">
+                Battle Formation
               </Link>
             </li>
           </ul>
