@@ -1,0 +1,11 @@
+efficiency_predictions,Temperature,Moisture,Water_Content,SpO2,Fatigue,Drowsiness,Stress,Heart_Rate,Respiration_Rate,x,y,label
+66,36.4,46.0,73.5,99.3,60.3,27.5,43.5,62.5,17.6,95,70,Defensive Position - Regroup and Hold
+29,36.3,48.7,74.0,94.1,46.9,24.8,39.7,72.4,19.7,3,58,Defensive Position - Regroup and Hold
+75,36.3,58.6,69.3,97.3,61.5,34.0,40.5,73.0,16.9,93,85,Defensive Position - Regroup and Hold
+35,36.5,41.0,54.1,94.5,24.0,19.9,42.0,89.2,17.2,22,27,Fierce Attack - Charge Forward!
+38,36.9,50.4,47.9,96.2,28.8,43.1,17.6,85.5,16.3,14,65,Balanced Formation - Hold and Assess
+17,36.8,52.8,65.5,96.4,22.0,17.6,27.5,95.5,12.3,42,41,Defensive Position - Regroup and Hold
+36,36.5,36.4,58.2,93.5,34.6,49.5,19.1,78.9,13.1,28,44,Balanced Formation - Hold and Assess
+67,37.1,53.2,48.7,99.8,37.5,42.0,45.2,64.8,12.3,35,61,Defensive Position - Regroup and Hold
+16,36.3,40.1,59.9,98.2,32.2,22.0,36.8,88.5,18.4,12,56,Defensive Position - Regroup and Hold
+44,36.5,37.0,46.0,99.5,57.3,15.2,26.6,90.4,15.1,31,5,Defensive Position - Regroup and Hold
