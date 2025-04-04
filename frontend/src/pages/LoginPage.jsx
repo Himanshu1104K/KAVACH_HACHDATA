@@ -8,6 +8,15 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [animateIn, setAnimateIn] = useState(false);
+
+  // Trigger animation after component mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAnimateIn(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Clear error message when user or password changes
   useEffect(() => {
@@ -32,7 +41,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black-primary">
-      <div className="flex flex-col items-center">
+      <div className={`flex flex-col items-center transition-opacity duration-1000 ${animateIn ? 'opacity-100' : 'opacity-0'}`}>
         <div className="mb-12 text-center">
           <h1 className="text-6xl font-bold text-white">KAVACH</h1>
         </div>

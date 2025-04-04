@@ -1,7 +1,15 @@
 @import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   /* Vibrant Black & Gray Theme - Lighter Version */
-  --black-primary: #121212;
+  --black-primary: #000000;
   --black-secondary: #1E1E1E;
   --gray-dark: #2D2D2D;
   --gray-medium: #505050;
