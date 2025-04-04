@@ -6,59 +6,94 @@
   justify-content: center;
   flex-direction: column;
   gap: 30px;
+  background-color: var(--black-primary);
 }
-.logP h1 {
-  font-variant-caps: all-petite-caps;
-  font-weight: bold;
-  font-size: 4rem;
-}
+
 .logBox {
-  background-color: #f8f3d946;
+  background-color: var(--gray-dark);
   display: flex;
   width: 450px;
-  height: 400px;
+  height: auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
   padding: 50px 40px;
   border-radius: 20px;
+  border: 1px solid var(--gray-medium);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.logP h1 {
+  font-variant-caps: all-petite-caps;
+  font-weight: bold;
+  font-size: 4rem;
+  color: var(--white);
 }
 
 .logBox h2 {
   font-size: 2rem;
   font-weight: bold;
   font-variant-caps: all-petite-caps;
+  color: var(--white);
 }
 
 .logBox input {
-  width: 80%;
+  width: 100%;
   font-size: 1.4rem;
   padding: 15px;
   border-radius: 8px;
-  background-color: #504b38;
+  background-color: var(--black-secondary);
+  color: var(--white);
+  border: 1px solid var(--gray-medium);
 }
 
 .logBox button {
   font-size: 1.3rem;
   padding: 5px 40px;
+  background-color: var(--gray-medium);
+  color: var(--white);
+  transition: all 0.2s ease;
 }
+
+.logBox button:hover {
+  background-color: var(--gray-light);
+}
+
 .mainDH {
   font-variant-caps: all-petite-caps;
   font-weight: bold;
+  color: var(--white);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .cardBtn {
   padding: 3px 5px;
   font-size: 0.8rem;
+  background-color: var(--gray-medium);
+  color: var(--white);
 }
+
+.cardBtn:hover {
+  background-color: var(--gray-light);
+}
+
 .tactic {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
+  background-color: var(--black-primary);
 }
+
 .tactic h1 {
   font-weight: bold;
   font-variant-caps: all-petite-caps;
   font-size: 3rem;
+  color: var(--white);
+}
+
+button {
+  border-radius: 8px;
+  background-color: var(--gray-200);
 }

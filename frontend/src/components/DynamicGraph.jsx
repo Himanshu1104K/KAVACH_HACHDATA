@@ -25,55 +25,158 @@ ChartJS.register(
 
 const DynamicGraph = ({ selectedMetric }) => {
   const { id } = useParams();
-  const soldierIndex = parseInt(id) == 0 ? 0 : parseInt(id) - 1;
+  const soldierIndex = parseInt(id) === 0 ? 0 : parseInt(id) - 1;
   const { solData } = useContext(AuthContext);
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     if (solData !== undefined) {
-      setChartData((prevData) => {
-        const newValue =
-          selectedMetric == "Efficiency"
-            ? solData.efficiency_predictions[soldierIndex]
-            : Math.floor(solData.soldier_data[selectedMetric][id]);
-        const newData = [...prevData, newValue];
-
-        if (newData.length > 10) newData.shift();
-        return newData;
-      });
+      try {
+        setChartData((prevData) => {
+          let newValue;
+          
+          // Special handling for efficiency_predictions which is at the root level
+          if (selectedMetric === "efficiency_predictions") {
+            newValue = solData.efficiency_predictions[soldierIndex];
+          } 
+          // Handle all other metrics which are in soldier_data object with nested structure
+          else if (solData.soldier_data && solData.soldier_data[selectedMetric]) {
+            // Convert soldierIndex to string since the API keys are strings
+            const strIndex = soldierIndex.toString();
+            newValue = Math.floor(solData.soldier_data[selectedMetric][strIndex] || 0);
+          } else {
+            newValue = 0;
+          }
+          
+          const newData = [...prevData, newValue];
+          if (newData.length > 10) newData.shift();
+          return newData;
+        });
+      } catch (error) {
+        console.error("Error updating chart data:", error);
+        setChartData([0]); // Fallback to prevent UI breaking
+      }
     }
-  }, [solData, selectedMetric]); // Re-run when `solData` or `selectedMetric` changes
+  }, [solData, selectedMetric, soldierIndex]);
 
+  // Generate labels for x-axis
   const labels = chartData.map((_, index) => index + 1);
+
+  // Format the metric name for display
+  const formatMetricName = (metric) => {
+    if (metric === "efficiency_predictions") return "Efficiency";
+    return metric.replace(/_/g, ' ');
+  };
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: selectedMetric,
+        label: formatMetricName(selectedMetric),
         data: chartData,
-        fill: false,
-        backgroundColor: "#504b38",
-        borderColor: "#504b385c",
+        fill: true,
+        backgroundColor: "rgba(99, 179, 237, 0.3)",
+        borderColor: "rgba(99, 179, 237, 0.8)",
+        borderWidth: 3,
+        tension: 0.4,
+        pointBackgroundColor: "#FFFFFF",
+        pointBorderColor: "rgba(99, 179, 237, 0.8)",
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBorderWidth: 2,
       },
     ],
   };
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
-      legend: { position: "top" },
-      title: { display: true, text: `${selectedMetric} Over Time` },
+      legend: { 
+        position: "top",
+        labels: {
+          color: "#E0E0E0",
+          font: {
+            size: 13,
+            weight: "bold"
+          },
+          boxWidth: 15,
+          padding: 20
+        }
+      },
+      title: { 
+        display: true, 
+        text: `${formatMetricName(selectedMetric)} Over Time`,
+        color: "#FFFFFF",
+        font: {
+          size: 18,
+          weight: "bold",
+          family: "'Inter', sans-serif"
+        },
+        padding: {
+          bottom: 20
+        }
+      },
+      tooltip: {
+        backgroundColor: "rgba(46, 46, 46, 0.9)",
+        titleFont: {
+          size: 14,
+          weight: "bold"
+        },
+        bodyFont: {
+          size: 13
+        },
+        padding: 10,
+        cornerRadius: 6,
+        displayColors: false
+      }
     },
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(187, 187, 187, 0.1)",
+          lineWidth: 1
+        },
+        ticks: {
+          color: "#E0E0E0",
+          font: {
+            size: 12
+          },
+          padding: 10
+        },
+        border: {
+          display: false
+        }
+      },
+      y: {
+        grid: {
+          color: "rgba(187, 187, 187, 0.1)",
+          lineWidth: 1
+        },
+        ticks: {
+          color: "#E0E0E0",
+          font: {
+            size: 12
+          },
+          padding: 10
+        },
+        border: {
+          display: false
+        }
+      }
+    },
+    animation: {
+      duration: 800,
+      easing: 'easeOutQuart'
+    }
   };
 
   return (
-    <div>
-      <Line
-        options={options}
-        data={data}
-        className="bg-[#F8F3D9] rounded-md p-6 "
-      />
+    <div className="bg-black-secondary rounded-xl p-6 shadow-lg border border-gray-dark hover:border-gray-medium transition-all duration-300 h-full">
+      <h3 className="text-white text-xl font-semibold mb-6 border-b border-gray-dark pb-3">{formatMetricName(selectedMetric)} Metrics</h3>
+      <div className="h-[350px] w-full">
+        <Line options={options} data={data} />
+      </div>
     </div>
   );
 };
