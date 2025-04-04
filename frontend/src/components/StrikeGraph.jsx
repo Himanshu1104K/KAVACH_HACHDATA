@@ -24,8 +24,8 @@ ChartJS.register(
 
 const StrikeGraph = () => {
   const { strike } = useFetchStrike(
-    // "https://fastapi-backend-for-kavach-production.up.railway.app/strike_efficiency"
-    "http://127.0.0.1:8000/strike_efficiency"
+    "https://kavach-backend-production.up.railway.app/strike_efficiency"
+    // "http://127.0.0.1:8000/strike_efficiency"
   );
 
   // Initialize state to hold the strike data points
@@ -83,11 +83,11 @@ const StrikeGraph = () => {
           font: {
             size: 13,
             weight: "bold",
-            family: "'Inter', sans-serif"
+            family: "'Inter', sans-serif",
           },
           boxWidth: 15,
-          padding: 20
-        }
+          padding: 20,
+        },
       },
       title: {
         display: true,
@@ -96,72 +96,72 @@ const StrikeGraph = () => {
         font: {
           size: 18,
           weight: "bold",
-          family: "'Inter', sans-serif"
+          family: "'Inter', sans-serif",
         },
         padding: {
-          bottom: 20
-        }
+          bottom: 20,
+        },
       },
       tooltip: {
         backgroundColor: "rgba(30, 30, 30, 0.9)",
         titleFont: {
           size: 14,
-          weight: "bold"
+          weight: "bold",
         },
         bodyFont: {
-          size: 13
+          size: 13,
         },
         padding: 10,
         cornerRadius: 6,
         displayColors: false,
         callbacks: {
-          label: function(context) {
+          label: function (context) {
             return `Probability: ${(context.raw * 100).toFixed(2)}%`;
-          }
-        }
-      }
+          },
+        },
+      },
     },
     scales: {
       x: {
         grid: {
           color: "rgba(187, 187, 187, 0.1)",
-          lineWidth: 1
+          lineWidth: 1,
         },
         ticks: {
           color: "#E0E0E0",
           font: {
-            size: 12
+            size: 12,
           },
-          padding: 10
+          padding: 10,
         },
         border: {
-          display: false
-        }
+          display: false,
+        },
       },
       y: {
         grid: {
           color: "rgba(187, 187, 187, 0.1)",
-          lineWidth: 1
+          lineWidth: 1,
         },
         ticks: {
           color: "#E0E0E0",
           font: {
-            size: 12
+            size: 12,
           },
           padding: 10,
-          callback: function(value) {
-            return (value * 100).toFixed(0) + '%';
-          }
+          callback: function (value) {
+            return (value * 100).toFixed(0) + "%";
+          },
         },
         border: {
-          display: false
-        }
-      }
+          display: false,
+        },
+      },
     },
     animation: {
       duration: 1200,
-      easing: 'easeOutQuart'
-    }
+      easing: "easeOutQuart",
+    },
   };
 
   return (

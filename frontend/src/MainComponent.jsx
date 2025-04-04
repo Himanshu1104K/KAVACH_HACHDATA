@@ -14,8 +14,8 @@ function MainComponent() {
   const userName = "admin";
   const password = "0";
   const { solData, error, isLoading } = useFetchData(
-    // "https://fastapi-backend-for-kavach-production.up.railway.app/"
-    "http://127.0.0.1:8000/"
+    "https://kavach-backend-production.up.railway.app/"
+    // "http://127.0.0.1:8000/"
   );
   return (
     <>
