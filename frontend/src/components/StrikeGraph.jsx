@@ -24,8 +24,8 @@ ChartJS.register(
 
 const StrikeGraph = () => {
   const { strike } = useFetchStrike(
-    "https://kavach-backend-production.up.railway.app/strike_efficiency"
-    // "http://127.0.0.1:8000/strike_efficiency"
+    // "https://kavach-backend-production.up.railway.app/strike_efficiency"
+    "http://127.0.0.1:8000/strike_efficiency"
   );
 
   // Initialize state to hold the strike data points
@@ -55,18 +55,18 @@ const StrikeGraph = () => {
       {
         label: "Strike Success Rate",
         data: chartData,
-        backgroundColor: "rgba(16, 185, 129, 0.3)",
-        borderColor: "rgba(16, 185, 129, 1)",
+        backgroundColor: "rgba(221, 161, 94, 0.25)",
+        borderColor: "#BC6C25",
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#FFFFFF",
-        pointBorderColor: "rgba(16, 185, 129, 1)",
+        pointBackgroundColor: "#FEFAE0",
+        pointBorderColor: "#BC6C25",
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBorderWidth: 2,
-        pointHoverBackgroundColor: "#FFFFFF",
-        pointHoverBorderColor: "rgba(16, 185, 129, 1)",
+        pointHoverBackgroundColor: "#FEFAE0",
+        pointHoverBorderColor: "#BC6C25",
         pointHoverBorderWidth: 3,
       },
     ],
@@ -79,7 +79,7 @@ const StrikeGraph = () => {
       legend: {
         position: "top",
         labels: {
-          color: "#FFFFFF",
+          color: "#FEFAE0",
           font: {
             size: 13,
             weight: "bold",
@@ -92,7 +92,7 @@ const StrikeGraph = () => {
       title: {
         display: true,
         text: "Strike Success Probability Over Time",
-        color: "#FFFFFF",
+        color: "#FEFAE0",
         font: {
           size: 18,
           weight: "bold",
@@ -124,11 +124,11 @@ const StrikeGraph = () => {
     scales: {
       x: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)",
           lineWidth: 1,
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0",
           font: {
             size: 12,
           },
@@ -140,11 +140,11 @@ const StrikeGraph = () => {
       },
       y: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)",
           lineWidth: 1,
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0",
           font: {
             size: 12,
           },

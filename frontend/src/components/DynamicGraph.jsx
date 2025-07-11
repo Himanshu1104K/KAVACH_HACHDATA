@@ -75,12 +75,12 @@ const DynamicGraph = ({ selectedMetric }) => {
         label: formatMetricName(selectedMetric),
         data: chartData,
         fill: true,
-        backgroundColor: "rgba(99, 179, 237, 0.3)",
-        borderColor: "rgba(99, 179, 237, 0.8)",
+        backgroundColor: "rgba(96, 108, 56, 0.25)",
+        borderColor: "#606C38",
         borderWidth: 3,
         tension: 0.4,
-        pointBackgroundColor: "#FFFFFF",
-        pointBorderColor: "rgba(99, 179, 237, 0.8)",
+        pointBackgroundColor: "#FEFAE0",
+        pointBorderColor: "#606C38",
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBorderWidth: 2,
@@ -95,7 +95,7 @@ const DynamicGraph = ({ selectedMetric }) => {
       legend: { 
         position: "top",
         labels: {
-          color: "#E0E0E0",
+          color: "#FEFAE0",
           font: {
             size: 13,
             weight: "bold"
@@ -107,7 +107,7 @@ const DynamicGraph = ({ selectedMetric }) => {
       title: { 
         display: true, 
         text: `${formatMetricName(selectedMetric)} Over Time`,
-        color: "#FFFFFF",
+        color: "#FEFAE0",
         font: {
           size: 18,
           weight: "bold",
@@ -134,11 +134,11 @@ const DynamicGraph = ({ selectedMetric }) => {
     scales: {
       x: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)",
           lineWidth: 1
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0",
           font: {
             size: 12
           },
@@ -150,11 +150,11 @@ const DynamicGraph = ({ selectedMetric }) => {
       },
       y: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)",
           lineWidth: 1
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0",
           font: {
             size: 12
           },

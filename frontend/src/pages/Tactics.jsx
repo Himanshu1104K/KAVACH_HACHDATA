@@ -6,10 +6,12 @@ import useFetchStrike from "../customHooks/useFetchStrike";
 
 const Tactics = () => {
   const { formation, isLoading, error } = useFetchTactics(
-    "https://kavach-backend-production.up.railway.app/soldier_tacktics"
+    // "https://kavach-backend-production.up.railway.app/soldier_tacktics"
+    "http://127.0.0.1:8000/soldier_tacktics"
   );
   const { strike, isLoading: strikeLoading } = useFetchStrike(
-    "https://kavach-backend-production.up.railway.app/strike_efficiency"
+    // "https://kavach-backend-production.up.railway.app/strike_efficiency"
+    "http://127.0.0.1:8000/strike_efficiency"
   );
 
   // Generate random positions for the soldier dots formation
@@ -165,21 +167,21 @@ const Tactics = () => {
               <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 5 }}>
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="#BBBBBB" />
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#DDA15E" />
                   </marker>
                 </defs>
                 
                 {/* Connect soldiers with lines - just examples */}
-                <line x1="50%" y1="20%" x2="30%" y2="35%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="50%" y1="20%" x2="70%" y2="35%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="35%" x2="20%" y2="50%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="35%" x2="80%" y2="50%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="35%" x2="50%" y2="50%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="35%" x2="50%" y2="50%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="20%" y1="50%" x2="30%" y2="65%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="80%" y1="50%" x2="70%" y2="65%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="65%" x2="40%" y2="80%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="65%" x2="60%" y2="80%" stroke="#BBBBBB" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="50%" y1="20%" x2="30%" y2="35%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="50%" y1="20%" x2="70%" y2="35%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="35%" x2="20%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="35%" x2="80%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="35%" x2="50%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="35%" x2="50%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="20%" y1="50%" x2="30%" y2="65%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="80%" y1="50%" x2="70%" y2="65%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="65%" x2="40%" y2="80%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="65%" x2="60%" y2="80%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
               </svg>
               
               {/* Direction indicator */}

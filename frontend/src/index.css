@@ -8,15 +8,15 @@ html {
 }
 
 :root {
-  /* Vibrant Black & Gray Theme - Lighter Version */
-  --black-primary: #000000;
-  --black-secondary: #1E1E1E;
-  --gray-dark: #2D2D2D;
-  --gray-medium: #505050;
-  --gray-light: #909090;
-  --gray-accent: #BBBBBB;
-  --gray-lightest: #E0E0E0;
-  --white: #FFFFFF;
+  /* Minimalistic charcoal-gray dark theme */
+  --black-primary: #212529;
+  --black-secondary: #283618;
+  --gray-dark: #283618;
+  --gray-medium: #BC6C25;
+  --gray-light: #DDA15E;
+  --gray-accent: #FEFAE0;
+  --gray-lightest: #FEFAE0;
+  --white: #FEFAE0;
 
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -31,7 +31,7 @@ const EfficencyGraph = () => {
       legend: {
         position: "top",
         labels: {
-          color: "#FFFFFF",
+          color: "#FEFAE0", // legend labels
           font: {
             size: 13,
             weight: "bold",
@@ -44,7 +44,7 @@ const EfficencyGraph = () => {
       title: {
         display: true,
         text: "Soldier Efficiency",
-        color: "#FFFFFF",
+        color: "#FEFAE0", // title
         font: {
           size: 18,
           weight: "bold",
@@ -76,11 +76,11 @@ const EfficencyGraph = () => {
     scales: {
       x: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)", // grid
           lineWidth: 1
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0", // ticks
           font: {
             size: 12
           },
@@ -92,11 +92,11 @@ const EfficencyGraph = () => {
       },
       y: {
         grid: {
-          color: "rgba(187, 187, 187, 0.1)",
+          color: "rgba(221, 161, 94, 0.1)", // y grid
           lineWidth: 1
         },
         ticks: {
-          color: "#E0E0E0",
+          color: "#FEFAE0", // y ticks
           font: {
             size: 12
           },

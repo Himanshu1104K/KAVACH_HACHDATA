@@ -46,7 +46,7 @@ const LoginPage = () => {
           <h1 className="text-6xl font-bold text-white">KAVACH</h1>
         </div>
         
-        <div className="w-[500px] bg-gray-dark rounded-lg overflow-hidden shadow-2xl">
+        <div className="w-[500px] bg-gray-dark rounded-lg overflow-hidden shadow-2xl shadow-[#343a40]">
           <div className="p-8">
             <h2 className="text-2xl font-bold text-center text-white mb-8">SECURE AUTHENTICATION</h2>
             
