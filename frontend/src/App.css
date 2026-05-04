@@ -10,7 +10,7 @@
 }
 
 .logBox {
-  background-color: var(--gray-dark);
+  background: linear-gradient(160deg, var(--surface-1), var(--surface-2));
   display: flex;
   width: 450px;
   height: auto;
@@ -20,8 +20,8 @@
   gap: 20px;
   padding: 50px 40px;
   border-radius: 20px;
-  border: 1px solid var(--gray-medium);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
 }
 
 .logP h1 {
@@ -64,7 +64,8 @@
   font-variant-caps: all-petite-caps;
   font-weight: bold;
   color: var(--white);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.06em;
 }
 
 .cardBtn {
@@ -96,4 +97,42 @@
 button {
   border-radius: 8px;
   background-color: var(--gray-200);
+}
+
+.ui-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(107, 183, 183, 0.1), transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(79, 159, 159, 0.12), transparent 35%),
+    var(--black-primary);
+}
+
+.ui-panel {
+  background: linear-gradient(145deg, var(--surface-1), var(--surface-2));
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--surface-shadow);
+  border-radius: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+.ui-section-title {
+  color: var(--white);
+  border-bottom: 1px solid rgba(180, 241, 235, 0.15);
+  padding-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.ui-nav-pill {
+  background: rgba(22, 36, 55, 0.72);
+  border: 1px solid rgba(180, 241, 235, 0.2);
+  box-shadow: 0 10px 25px rgba(7, 14, 27, 0.24);
+}
+
+.ui-nav-pill a {
+  color: var(--gray-lightest);
+}
+
+.ui-nav-pill a:hover {
+  background: rgba(79, 159, 159, 0.2);
+  color: var(--white);
 }

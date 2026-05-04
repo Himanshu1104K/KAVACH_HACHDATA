@@ -75,12 +75,12 @@ const DynamicGraph = ({ selectedMetric }) => {
         label: formatMetricName(selectedMetric),
         data: chartData,
         fill: true,
-        backgroundColor: "rgba(96, 108, 56, 0.25)",
-        borderColor: "#606C38",
+        backgroundColor: "rgba(79, 159, 159, 0.28)",
+        borderColor: "#6bb7b7",
         borderWidth: 3,
         tension: 0.4,
         pointBackgroundColor: "#FEFAE0",
-        pointBorderColor: "#606C38",
+        pointBorderColor: "#6bb7b7",
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBorderWidth: 2,
@@ -172,8 +172,8 @@ const DynamicGraph = ({ selectedMetric }) => {
   };
 
   return (
-    <div className="bg-black-secondary rounded-xl p-6 shadow-lg border border-gray-dark hover:border-gray-medium transition-all duration-300 h-full">
-      <h3 className="text-white text-xl font-semibold mb-6 border-b border-gray-dark pb-3">{formatMetricName(selectedMetric)} Metrics</h3>
+    <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300 h-full">
+      <h3 className="ui-section-title text-white text-xl font-semibold mb-6">{formatMetricName(selectedMetric)} Metrics</h3>
       <div className="h-[350px] w-full">
         <Line options={options} data={data} />
       </div>

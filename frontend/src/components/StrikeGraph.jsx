@@ -55,18 +55,18 @@ const StrikeGraph = () => {
       {
         label: "Strike Success Rate",
         data: chartData,
-        backgroundColor: "rgba(221, 161, 94, 0.25)",
-        borderColor: "#BC6C25",
+        backgroundColor: "rgba(107, 183, 183, 0.25)",
+        borderColor: "#6bb7b7",
         borderWidth: 3,
         fill: true,
         tension: 0.4,
         pointBackgroundColor: "#FEFAE0",
-        pointBorderColor: "#BC6C25",
+        pointBorderColor: "#6bb7b7",
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBorderWidth: 2,
         pointHoverBackgroundColor: "#FEFAE0",
-        pointHoverBorderColor: "#BC6C25",
+        pointHoverBorderColor: "#6bb7b7",
         pointHoverBorderWidth: 3,
       },
     ],
@@ -165,8 +165,8 @@ const StrikeGraph = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-black-secondary to-gray-dark rounded-xl p-6 shadow-xl border border-gray-dark hover:border-gray-medium transition-all duration-300">
-      <h3 className="text-white text-xl font-semibold mb-6 border-b border-gray-dark pb-3">
+    <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
+      <h3 className="ui-section-title text-white text-xl font-semibold mb-6">
         Strike Success Probability
       </h3>
       <div className="h-[350px] w-full">

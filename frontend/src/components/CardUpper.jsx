@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
 const CardUpper = (props) => {
   return (
     <>
-      <div className="w-full h-full p-5 border border-gray-medium rounded-xl shadow-lg bg-gradient-to-br from-black-secondary to-gray-dark hover:from-gray-dark hover:to-black-secondary transition-all duration-300">
+      <div className="w-full h-full p-5 border border-[rgba(180,241,235,0.22)] rounded-xl shadow-lg bg-[linear-gradient(145deg,rgba(22,36,55,0.82),rgba(37,52,74,0.92))] hover:border-[rgba(180,241,235,0.45)] transition-all duration-300">
         <h5 className="mb-2 text-[1.1rem] font-bold text-gray-lightest tracking-wide">
           {props.title}
         </h5>
         <p className="text-3xl font-bold text-white mb-3">
           {props.value}
         </p>
-        <button className="cardBtn mt-1 px-3 py-1 bg-gray-medium hover:bg-gray-light text-white text-xs rounded-md transition-all duration-200 flex items-center opacity-80 hover:opacity-100">
+        <button className="cardBtn mt-1 px-3 py-1 bg-gray-medium hover:bg-gray-light text-white text-xs rounded-md transition-all duration-200 flex items-center opacity-85 hover:opacity-100 shadow-md shadow-[rgba(8,16,30,0.25)]">
           <span className="mr-1">view</span>
           <svg
             className="rtl:rotate-180 w-3 h-3"

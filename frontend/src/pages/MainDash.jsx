@@ -6,7 +6,7 @@ import PageTransition from "../components/PageTransition";
 
 const MainDash = () => {
   return (
-    <div className="bg-gradient-to-br from-black-primary to-black-secondary min-h-screen">
+    <div className="ui-shell min-h-screen">
       <NavBar />
       <div className="container mx-auto px-4 pt-24 pb-8">
         <PageTransition>
@@ -16,7 +16,7 @@ const MainDash = () => {
           
           {/* Quick Navigation - Demonstrates smooth scrolling */}
           <div className="flex justify-center mb-8">
-            <div className="bg-black-secondary rounded-lg shadow-md p-2 inline-flex gap-3">
+            <div className="ui-nav-pill rounded-xl p-2 inline-flex gap-3">
               <a href="#efficiency" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Efficiency</a>
               <a href="#strikes" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Strikes</a>
               <a href="#strike-list" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Strike List</a>
@@ -32,7 +32,7 @@ const MainDash = () => {
             </div>
           </div>
           
-          <div id="strike-list" className="bg-gradient-to-br from-black-secondary to-gray-dark rounded-xl p-8 border border-gray-dark shadow-xl hover:border-gray-medium transition-all duration-300 scroll-mt-32">
+          <div id="strike-list" className="ui-panel p-8 hover:border-gray-medium transition-all duration-300 scroll-mt-32">
             <StrikeList />
           </div>
           

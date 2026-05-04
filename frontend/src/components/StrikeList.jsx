@@ -1,10 +1,16 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../MainComponent";
+import { getSoldierNameById } from "../constants/soldierNames";
 
 function StrikeList() {
   const { solData } = useContext(AuthContext);
   const navigate = useNavigate();
+  const getStatus = (efficiency) => {
+    if (efficiency < 30) return "Danger";
+    if (efficiency > 70) return "Stable";
+    return "Watch";
+  };
 
   // Ensure solData and efficiency_predictions exist before sorting
   const sortedSoldiers = solData?.efficiency_predictions
@@ -15,37 +21,48 @@ function StrikeList() {
 
   return (
     <>
-      <h2 className="text-white text-2xl font-bold mb-6 border-b border-gray-dark pb-3">Soldier Efficiency Ranking</h2>
+      <h2 className="ui-section-title text-white text-2xl font-bold mb-6">Soldier Efficiency Ranking</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {sortedSoldiers.length > 0
           ? sortedSoldiers.map((soldier) => (
               <div
-                className="bg-black-secondary rounded-xl p-4 border border-gray-dark hover:border-gray-light transition-all duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
+                className="bg-[linear-gradient(145deg,rgba(22,36,55,0.8),rgba(37,52,74,0.9))] rounded-xl p-4 border border-[rgba(180,241,235,0.2)] hover:border-[rgba(180,241,235,0.45)] transition-all duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
                 key={soldier.id}
                 onClick={() => navigate(`/SingleSol/${soldier.id}`)}
               >
                 <div className="flex items-center">
                   <div className={`flex items-center justify-center rounded-full w-12 h-12 mr-4 ${
                     soldier.efficiency < 30 
-                      ? 'bg-gradient-to-br from-red-800 to-red-600 text-white' 
+                      ? 'bg-gradient-to-br from-[#c86a6a] to-[#a14f4f] text-white' 
                       : soldier.efficiency > 70 
-                        ? 'bg-gradient-to-br from-green-800 to-green-600 text-white' 
-                        : 'bg-gradient-to-br from-yellow-700 to-yellow-500 text-white'
+                        ? 'bg-gradient-to-br from-[#64a88e] to-[#4d8d76] text-white' 
+                        : 'bg-gradient-to-br from-[#c7a56a] to-[#ab8850] text-white'
                   }`}>
                     {soldier.id}
                   </div>
                   <div className="flex-grow">
                     <div className="text-gray-lightest text-xl font-semibold">
-                      Soldier {soldier.id}
+                      {getSoldierNameById(soldier.id)}
                     </div>
                     <div className={`text-lg font-bold ${
                       soldier.efficiency < 30 
-                        ? 'text-red-400' 
+                        ? 'text-[#f2a7a7]' 
                         : soldier.efficiency > 70 
-                          ? 'text-green-400' 
-                          : 'text-yellow-400'
+                          ? 'text-[#9ee3c8]' 
+                          : 'text-[#f1cf8e]'
                     }`}>
                       Efficiency: {soldier.efficiency}%
+                    </div>
+                    <div className="mt-1">
+                      <span className={`text-xs font-semibold px-2 py-1 rounded-md ${
+                        soldier.efficiency < 30
+                          ? "bg-[rgba(200,106,106,0.2)] text-[#f2a7a7]"
+                          : soldier.efficiency > 70
+                            ? "bg-[rgba(100,168,142,0.2)] text-[#9ee3c8]"
+                            : "bg-[rgba(199,165,106,0.2)] text-[#f1cf8e]"
+                      }`}>
+                        {getStatus(soldier.efficiency)}
+                      </span>
                     </div>
                   </div>
                   <div className="text-gray-light hover:text-white transition-colors duration-200 flex items-center">
@@ -57,7 +74,7 @@ function StrikeList() {
                 </div>
               </div>
             ))
-          : <div className="text-gray-light text-xl p-6 text-center bg-black-secondary rounded-xl border border-gray-dark">Loading or No Data</div>
+          : <div className="text-gray-light text-xl p-6 text-center bg-[rgba(22,36,55,0.82)] rounded-xl border border-[rgba(180,241,235,0.2)]">Loading or No Data</div>
         }
       </div>
     </>

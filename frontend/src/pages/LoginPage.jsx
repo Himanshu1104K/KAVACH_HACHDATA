@@ -40,13 +40,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black-primary">
+    <div className="ui-shell min-h-screen flex items-center justify-center">
       <div className={`flex flex-col items-center transition-opacity duration-1000 ${animateIn ? 'opacity-100' : 'opacity-0'}`}>
         <div className="mb-12 text-center">
-          <h1 className="text-6xl font-bold text-white">KAVACH</h1>
+          <h1 className="text-6xl font-bold text-white tracking-widest drop-shadow-[0_8px_20px_rgba(0,0,0,0.35)]">KAVACH</h1>
         </div>
         
-        <div className="w-[500px] bg-gray-dark rounded-lg overflow-hidden shadow-2xl shadow-[#343a40]">
+        <div className="w-[500px] ui-panel overflow-hidden">
           <div className="p-8">
             <h2 className="text-2xl font-bold text-center text-white mb-8">SECURE AUTHENTICATION</h2>
             
@@ -64,7 +64,7 @@ const LoginPage = () => {
                     value={user}
                     onChange={(e) => setUser(e.target.value)}
                     placeholder="Enter Username"
-                    className="bg-black-secondary text-white w-full pl-10 pr-3 py-3 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-light"
+                    className="bg-[rgba(15,23,36,0.9)] text-white w-full pl-10 pr-3 py-3 rounded-md border border-[rgba(180,241,235,0.16)] focus:outline-none focus:ring-1 focus:ring-gray-light"
                     required
                   />
                 </div>
@@ -83,7 +83,7 @@ const LoginPage = () => {
                     value={pass}
                     onChange={(e) => setPass(e.target.value)}
                     placeholder="Enter Password"
-                    className="bg-black-secondary text-white w-full pl-10 pr-10 py-3 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-light"
+                    className="bg-[rgba(15,23,36,0.9)] text-white w-full pl-10 pr-10 py-3 rounded-md border border-[rgba(180,241,235,0.16)] focus:outline-none focus:ring-1 focus:ring-gray-light"
                     required
                   />
                   <button 
@@ -111,7 +111,7 @@ const LoginPage = () => {
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full py-3 bg-gray-medium hover:bg-gray-light text-white font-semibold rounded-md transition-all duration-200"
+                  className="w-full py-3 bg-gray-medium hover:bg-gray-light text-white font-semibold rounded-md transition-all duration-200 shadow-lg shadow-[rgba(8,16,30,0.35)]"
                 >
                   {loading ? (
                     <svg className="animate-spin h-5 w-5 mx-auto text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

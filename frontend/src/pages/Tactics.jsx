@@ -39,9 +39,9 @@ const Tactics = () => {
 
   // Function to determine soldier dot color based on efficiency
   const getSoldierColor = (efficiency) => {
-    if (efficiency < 30) return "bg-red-500";
-    if (efficiency > 70) return "bg-green-500";
-    return "bg-yellow-500";
+    if (efficiency < 30) return "bg-[#c86a6a]";
+    if (efficiency > 70) return "bg-[#64a88e]";
+    return "bg-[#c7a56a]";
   };
 
   // Format strike success probability
@@ -63,16 +63,16 @@ const Tactics = () => {
   // Determine strike success color based on percentage
   const strikeSuccessColor = () => {
     if (strikeLoading || !strike || !strike.strike_success_probability) {
-      return "bg-gray-500";
+      return "bg-[#7d8fa3]";
     }
     const successRate = strike.strike_success_probability * 100;
-    if (successRate < 30) return "bg-red-500";
-    if (successRate > 70) return "bg-green-500";
-    return "bg-yellow-500";
+    if (successRate < 30) return "bg-[#c86a6a]";
+    if (successRate > 70) return "bg-[#64a88e]";
+    return "bg-[#c7a56a]";
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black-primary to-black-secondary">
+    <div className="ui-shell min-h-screen">
       <NavBar />
       
       <div className="container mx-auto px-4 pt-24 pb-8">
@@ -83,14 +83,14 @@ const Tactics = () => {
           
           {/* Quick Navigation - Demonstrates smooth scrolling */}
           <div className="flex justify-center mb-8">
-            <div className="bg-black-secondary rounded-lg shadow-md p-2 inline-flex gap-3">
+            <div className="ui-nav-pill rounded-xl p-2 inline-flex gap-3">
               <a href="#formation" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Formation</a>
               <a href="#insights" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Insights</a>
               <a href="#details" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Details</a>
             </div>
           </div>
           
-          <div id="formation" className="bg-gradient-to-br from-black-secondary to-gray-dark rounded-xl p-8 shadow-xl border border-gray-dark mb-8 scroll-mt-32">
+          <div id="formation" className="ui-panel p-8 mb-8 scroll-mt-32">
             <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-6 border-b border-gray-medium">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-2">
@@ -195,7 +195,7 @@ const Tactics = () => {
           
           {/* Battle Insights Panel */}
           <div id="insights" className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 scroll-mt-32">
-            <div className="bg-black-secondary rounded-xl p-6 shadow-lg border border-gray-dark hover:border-gray-medium transition-all duration-300">
+            <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-red-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
@@ -210,7 +210,7 @@ const Tactics = () => {
               <p className="text-xs text-gray-light">75% favorable conditions</p>
             </div>
             
-            <div className="bg-black-secondary rounded-xl p-6 shadow-lg border border-gray-dark hover:border-gray-medium transition-all duration-300">
+            <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"></path>
@@ -224,7 +224,7 @@ const Tactics = () => {
               <p className="text-xs text-gray-light">{formatStrikeSuccess()} strike success probability</p>
             </div>
             
-            <div id="details" className="bg-black-secondary rounded-xl p-6 shadow-lg border border-gray-dark hover:border-gray-medium transition-all duration-300 scroll-mt-32">
+            <div id="details" className="ui-panel p-6 hover:border-gray-medium transition-all duration-300 scroll-mt-32">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1H9z" clipRule="evenodd"></path>

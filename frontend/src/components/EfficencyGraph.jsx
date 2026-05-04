@@ -20,6 +20,7 @@ ChartJS.register(
 );
 import { AuthContext } from "../MainComponent";
 import { useContext } from "react";
+import { getSoldierNameById } from "../constants/soldierNames";
 
 const EfficencyGraph = () => {
   const { solData } = useContext(AuthContext);
@@ -116,27 +117,27 @@ const EfficencyGraph = () => {
   };
   
   const data = {
-    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => `Soldier ${num}`),
+    labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => getSoldierNameById(num)),
     datasets: [
       {
         label: "Efficiency (%)",
         data: solData?.efficiency_predictions || [],
         backgroundColor: solData?.efficiency_predictions.map((eff) => {
-          return eff < 30 ? "rgba(248, 113, 113, 0.85)" : // More vibrant red
-                 eff > 70 ? "rgba(74, 222, 128, 0.85)" : // More vibrant green
-                 "rgba(250, 204, 21, 0.85)"; // More vibrant yellow
+          return eff < 30 ? "rgba(200, 106, 106, 0.84)" :
+                 eff > 70 ? "rgba(100, 168, 142, 0.84)" :
+                 "rgba(199, 165, 106, 0.84)";
         }),
         borderColor: solData?.efficiency_predictions.map((eff) => {
-          return eff < 30 ? "rgba(220, 38, 38, 1)" : // Red border
-                 eff > 70 ? "rgba(22, 163, 74, 1)" : // Green border
-                 "rgba(202, 138, 4, 1)"; // Yellow border
+          return eff < 30 ? "rgba(161, 79, 79, 1)" :
+                 eff > 70 ? "rgba(77, 141, 118, 1)" :
+                 "rgba(171, 136, 80, 1)";
         }),
         borderWidth: 2,
         borderRadius: 6,
         hoverBackgroundColor: solData?.efficiency_predictions.map((eff) => {
-          return eff < 30 ? "rgba(248, 113, 113, 1)" : 
-                 eff > 70 ? "rgba(74, 222, 128, 1)" : 
-                 "rgba(250, 204, 21, 1)";
+          return eff < 30 ? "rgba(200, 106, 106, 1)" : 
+                 eff > 70 ? "rgba(100, 168, 142, 1)" : 
+                 "rgba(199, 165, 106, 1)";
         }),
         barPercentage: 0.7,
         categoryPercentage: 0.8,
@@ -145,8 +146,8 @@ const EfficencyGraph = () => {
   };
   
   return (
-    <div className="bg-gradient-to-br from-black-secondary to-gray-dark rounded-xl p-6 shadow-xl border border-gray-dark hover:border-gray-medium transition-all duration-300">
-      <h3 className="text-white text-xl font-semibold mb-6 border-b border-gray-dark pb-3">Soldiers Performance Analytics</h3>
+    <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
+      <h3 className="ui-section-title text-white text-xl font-semibold mb-6">Soldiers Performance Analytics</h3>
       <div className="h-[350px] w-full">
         <Bar options={options} data={data} />
       </div>

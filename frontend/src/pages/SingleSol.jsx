@@ -46,7 +46,7 @@ const SingleSol = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black-primary">
+    <div className="ui-shell min-h-screen">
       <NavBar />
       <div className="container mx-auto px-6 pt-24 pb-8">
         <PageTransition>
