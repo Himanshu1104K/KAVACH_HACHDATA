@@ -1,7 +1,7 @@
 pandas
-numpy 
+numpy==1.26.4
 matplotlib
-tensorflow-cpu
+tensorflow-cpu==2.16.1
 uvicorn
 gunicorn
 joblib
