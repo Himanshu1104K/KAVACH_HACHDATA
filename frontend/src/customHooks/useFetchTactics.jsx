@@ -17,7 +17,11 @@ const useFetchTactics = (url, options = {}) => {
   } = useQuery({
     queryKey: ["formation", url],
     queryFn: async () => {
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          "ngrok-skip-browser-warning": "true",
+        },
+      });
       return response.data;
     },
     refetchInterval,

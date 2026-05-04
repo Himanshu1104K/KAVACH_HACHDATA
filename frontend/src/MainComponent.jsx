@@ -16,7 +16,8 @@ function MainComponent() {
   const password = "0";
   const { solData, error, isLoading } = useFetchData(
     // "https://kavach-backend-production.up.railway.app/"
-    "http://127.0.0.1:8000/"
+    // "http://127.0.0.1:8000/"
+    "https://welcomed-wildcat-actively.ngrok-free.app/"
   );
   return (
     <>

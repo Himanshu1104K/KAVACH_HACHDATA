@@ -12,10 +12,12 @@ import { generateRandomFormation } from "../lib/formationLayout";
 
 const Tactics = () => {
   const { formation, isLoading, error, refetch: refetchFormation } = useFetchTactics(
-    "http://127.0.0.1:8000/soldier_tacktics"
+    // "http://127.0.0.1:8000/soldier_tacktics"
+    "https://welcomed-wildcat-actively.ngrok-free.app/soldier_tacktics"
   );
   const { strike, isLoading: strikeLoading } = useFetchStrike(
-    "http://127.0.0.1:8000/strike_efficiency"
+    // "http://127.0.0.1:8000/strike_efficiency"
+    "https://welcomed-wildcat-actively.ngrok-free.app/strike_efficiency"
   );
 
   const [layoutTick, setLayoutTick] = useState(0);

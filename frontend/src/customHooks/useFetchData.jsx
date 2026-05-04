@@ -10,7 +10,11 @@ const useFetchData = (url) => {
     queryKey: ["solData"],
     queryFn: async () => {
       try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {
+          headers: {
+            "ngrok-skip-browser-warning": "true",
+          },
+        });
         return response.data;
       } catch (err) {
         console.error("Error fetching data:", err);

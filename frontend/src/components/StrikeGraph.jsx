@@ -25,7 +25,8 @@ ChartJS.register(
 const StrikeGraph = () => {
   const { strike } = useFetchStrike(
     // "https://kavach-backend-production.up.railway.app/strike_efficiency"
-    "http://127.0.0.1:8000/strike_efficiency"
+    // "http://127.0.0.1:8000/strike_efficiency"
+    "https://welcomed-wildcat-actively.ngrok-free.app/strike_efficiency"
   );
 
   // Initialize state to hold the strike data points
