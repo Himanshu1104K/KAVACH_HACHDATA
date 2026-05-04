@@ -57,9 +57,17 @@ const SingleSol = () => {
       <NavBar />
       <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 sm:pt-20">
         <PageTransition>
-          <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:mb-6 sm:text-2xl">
-            Soldier detail
-          </h2>
+          <header className="mb-8 text-center sm:mb-10">
+            <h1 className="mx-auto max-w-2xl text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
+              <span className="bg-gradient-to-r from-white via-[#e8f2ff] to-emerald-200/85 bg-clip-text text-transparent">
+                Soldier detail
+              </span>
+            </h1>
+            <div
+              className="mx-auto mt-4 h-px w-20 bg-gradient-to-r from-transparent via-emerald-400/45 to-transparent sm:mt-5 sm:w-24"
+              aria-hidden
+            />
+          </header>
 
           <div className="mb-8 flex flex-col gap-8 lg:flex-row">
             {/* Left side - Vital metrics grid */}

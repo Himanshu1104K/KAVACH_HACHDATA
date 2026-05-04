@@ -57,8 +57,8 @@ export default function NavBar() {
       : "border-transparent bg-[#050d18]/72 backdrop-blur-sm"
   );
 
-  const linkBase =
-    "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-colors sm:px-3.5";
+  const tabBase =
+    "relative flex flex-1 items-center justify-center gap-2 rounded-full px-2 py-2 text-sm font-medium tracking-tight transition-all duration-200 sm:gap-2.5 sm:px-3";
 
   return (
     <nav className={shell} aria-label="Main">
@@ -73,10 +73,10 @@ export default function NavBar() {
           </span>
         </Link>
 
-        {/* Desktop: segmented routes — same visual language as landing outline controls */}
-        <div className="hidden min-w-0 flex-1 justify-center md:flex">
+        {/* Desktop: centered pill, equal-width tabs — matches dashboard heading polish */}
+        <div className="hidden min-w-0 flex-1 justify-center md:flex md:px-2">
           <div
-            className="inline-flex max-w-full rounded-full border border-[#2b4a70]/90 bg-[#0a1628]/90 p-1 shadow-inner shadow-black/20"
+            className="flex w-full max-w-md items-stretch gap-0.5 rounded-full border border-[#2b4a70]/90 bg-[#0a1628]/95 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
             role="tablist"
             aria-label="App sections"
           >
@@ -87,15 +87,34 @@ export default function NavBar() {
                   key={to}
                   to={to}
                   className={cn(
-                    linkBase,
+                    tabBase,
                     active
-                      ? "bg-emerald-500/18 text-white ring-1 ring-emerald-500/35"
-                      : "text-[#8aa4c4] hover:bg-[#123059]/80 hover:text-[#e8f2ff]"
+                      ? "bg-gradient-to-b from-emerald-500/30 to-emerald-600/15 text-white shadow-sm ring-1 ring-emerald-400/35"
+                      : "text-[#8ea3b8] hover:bg-[#123059]/70 hover:text-[#e8f2ff]"
                   )}
                   aria-current={active ? "page" : undefined}
                 >
-                  <Icon className="size-4 shrink-0 opacity-90" strokeWidth={1.75} />
-                  {label}
+                  <Icon
+                    className={cn(
+                      "size-4 shrink-0 sm:size-[1.05rem]",
+                      active ? "text-emerald-200/95" : "opacity-85"
+                    )}
+                    strokeWidth={1.75}
+                  />
+                  <span
+                    className={cn(
+                      active &&
+                        "bg-gradient-to-r from-white via-[#e8f2ff] to-emerald-100/90 bg-clip-text text-transparent"
+                    )}
+                  >
+                    {label}
+                  </span>
+                  {active ? (
+                    <span
+                      className="absolute bottom-1 left-1/2 h-px w-8 -translate-x-1/2 bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent sm:w-10"
+                      aria-hidden
+                    />
+                  ) : null}
                 </Link>
               );
             })}
@@ -141,15 +160,25 @@ export default function NavBar() {
                 key={to}
                 to={to}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                  "flex items-center justify-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium tracking-tight transition-all",
                   active
-                    ? "bg-emerald-500/15 text-white ring-1 ring-emerald-500/30"
-                    : "text-[#8aa4c4] hover:bg-[#123059]/60 hover:text-[#e8f2ff]"
+                    ? "bg-gradient-to-b from-emerald-500/25 to-emerald-600/12 text-white ring-1 ring-emerald-400/30"
+                    : "text-[#8ea3b8] hover:bg-[#123059]/60 hover:text-[#e8f2ff]"
                 )}
                 aria-current={active ? "page" : undefined}
               >
-                <Icon className="size-4 shrink-0" strokeWidth={1.75} />
-                {label}
+                <Icon
+                  className={cn("size-4 shrink-0", active && "text-emerald-200/90")}
+                  strokeWidth={1.75}
+                />
+                <span
+                  className={cn(
+                    active &&
+                      "bg-gradient-to-r from-white via-[#e8f2ff] to-emerald-100/90 bg-clip-text text-transparent"
+                  )}
+                >
+                  {label}
+                </span>
               </Link>
             );
           })}
