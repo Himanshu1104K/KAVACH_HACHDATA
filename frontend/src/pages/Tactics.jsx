@@ -39,9 +39,9 @@ const Tactics = () => {
 
   // Function to determine soldier dot color based on efficiency
   const getSoldierColor = (efficiency) => {
-    if (efficiency < 30) return "bg-[#c86a6a]";
-    if (efficiency > 70) return "bg-[#64a88e]";
-    return "bg-[#c7a56a]";
+    if (efficiency < 30) return "bg-rose-500";
+    if (efficiency > 70) return "bg-emerald-500";
+    return "bg-amber-500";
   };
 
   // Format strike success probability
@@ -63,12 +63,12 @@ const Tactics = () => {
   // Determine strike success color based on percentage
   const strikeSuccessColor = () => {
     if (strikeLoading || !strike || !strike.strike_success_probability) {
-      return "bg-[#7d8fa3]";
+      return "bg-slate-500";
     }
     const successRate = strike.strike_success_probability * 100;
-    if (successRate < 30) return "bg-[#c86a6a]";
-    if (successRate > 70) return "bg-[#64a88e]";
-    return "bg-[#c7a56a]";
+    if (successRate < 30) return "bg-rose-500";
+    if (successRate > 70) return "bg-emerald-500";
+    return "bg-amber-500";
   };
 
   return (
@@ -167,21 +167,21 @@ const Tactics = () => {
               <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 5 }}>
                 <defs>
                   <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="#DDA15E" />
+                    <polygon points="0 0, 10 3.5, 0 7" fill="#34d399" />
                   </marker>
                 </defs>
                 
                 {/* Connect soldiers with lines - just examples */}
-                <line x1="50%" y1="20%" x2="30%" y2="35%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="50%" y1="20%" x2="70%" y2="35%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="35%" x2="20%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="35%" x2="80%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="35%" x2="50%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="35%" x2="50%" y2="50%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="20%" y1="50%" x2="30%" y2="65%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="80%" y1="50%" x2="70%" y2="65%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="30%" y1="65%" x2="40%" y2="80%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
-                <line x1="70%" y1="65%" x2="60%" y2="80%" stroke="#DDA15E" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="50%" y1="20%" x2="30%" y2="35%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="50%" y1="20%" x2="70%" y2="35%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="35%" x2="20%" y2="50%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="35%" x2="80%" y2="50%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="35%" x2="50%" y2="50%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="35%" x2="50%" y2="50%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="20%" y1="50%" x2="30%" y2="65%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="80%" y1="50%" x2="70%" y2="65%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="30%" y1="65%" x2="40%" y2="80%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
+                <line x1="70%" y1="65%" x2="60%" y2="80%" stroke="#34d399" strokeWidth="1" strokeDasharray="4" strokeOpacity="0.4" />
               </svg>
               
               {/* Direction indicator */}

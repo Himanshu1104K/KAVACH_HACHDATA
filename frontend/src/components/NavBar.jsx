@@ -40,8 +40,8 @@ const NavBar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
-        ? 'bg-[rgba(15,23,36,0.75)] backdrop-blur-md shadow-lg py-2 border-b border-[rgba(180,241,235,0.18)]' 
-        : 'bg-[rgba(15,23,36,0.55)] py-4'
+        ? 'bg-[rgba(15,23,42,0.78)] backdrop-blur-md shadow-lg py-2 border-b border-[rgba(110,231,183,0.2)]' 
+        : 'bg-[rgba(15,23,42,0.56)] py-4'
     }`}>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
         <Link
@@ -75,7 +75,7 @@ const NavBar = () => {
         <div className="flex md:order-2">
           <button
             type="button"
-            className="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 bg-gradient-to-r from-gray-medium to-gray-dark hover:from-gray-dark hover:to-gray-medium border border-[rgba(180,241,235,0.25)] hover:border-gray-light shadow-lg"
+            className="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 bg-gradient-to-r from-gray-medium to-emerald-800 hover:from-emerald-800 hover:to-gray-medium border border-[rgba(110,231,183,0.3)] hover:border-gray-light shadow-lg"
             onClick={() => {
               setAutenticated(false);
             }}
@@ -101,8 +101,8 @@ const NavBar = () => {
                 to="/"
                 className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
                   isActive('/') 
-                    ? 'bg-[rgba(79,159,159,0.2)] text-white font-bold border border-[rgba(180,241,235,0.2)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(79,159,159,0.16)] hover:text-white'
+                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
+                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
                 }`}
               >
                 <span className="flex items-center">
@@ -118,8 +118,8 @@ const NavBar = () => {
                 to="/SingleSol/0"
                 className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
                   isActive('/SingleSol/0') 
-                    ? 'bg-[rgba(79,159,159,0.2)] text-white font-bold border border-[rgba(180,241,235,0.2)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(79,159,159,0.16)] hover:text-white'
+                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
+                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
                 }`}
               >
                 <span className="flex items-center">
@@ -135,8 +135,8 @@ const NavBar = () => {
                 to="/tactics"
                 className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
                   isActive('/tactics') 
-                    ? 'bg-[rgba(79,159,159,0.2)] text-white font-bold border border-[rgba(180,241,235,0.2)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(79,159,159,0.16)] hover:text-white'
+                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
+                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
                 }`}
               >
                 <span className="flex items-center">

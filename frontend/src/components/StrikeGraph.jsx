@@ -55,18 +55,18 @@ const StrikeGraph = () => {
       {
         label: "Strike Success Rate",
         data: chartData,
-        backgroundColor: "rgba(107, 183, 183, 0.25)",
-        borderColor: "#6bb7b7",
+        backgroundColor: "rgba(16, 185, 129, 0.22)",
+        borderColor: "#10b981",
         borderWidth: 3,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#FEFAE0",
-        pointBorderColor: "#6bb7b7",
+        pointBackgroundColor: "#d1fae5",
+        pointBorderColor: "#10b981",
         pointRadius: 5,
         pointHoverRadius: 7,
         pointBorderWidth: 2,
-        pointHoverBackgroundColor: "#FEFAE0",
-        pointHoverBorderColor: "#6bb7b7",
+        pointHoverBackgroundColor: "#d1fae5",
+        pointHoverBorderColor: "#10b981",
         pointHoverBorderWidth: 3,
       },
     ],
@@ -79,7 +79,7 @@ const StrikeGraph = () => {
       legend: {
         position: "top",
         labels: {
-          color: "#FEFAE0",
+          color: "#d1fae5",
           font: {
             size: 13,
             weight: "bold",
@@ -92,7 +92,7 @@ const StrikeGraph = () => {
       title: {
         display: true,
         text: "Strike Success Probability Over Time",
-        color: "#FEFAE0",
+        color: "#d1fae5",
         font: {
           size: 18,
           weight: "bold",
@@ -124,11 +124,11 @@ const StrikeGraph = () => {
     scales: {
       x: {
         grid: {
-          color: "rgba(221, 161, 94, 0.1)",
+          color: "rgba(16, 185, 129, 0.16)",
           lineWidth: 1,
         },
         ticks: {
-          color: "#FEFAE0",
+          color: "#d1fae5",
           font: {
             size: 12,
           },
@@ -140,11 +140,11 @@ const StrikeGraph = () => {
       },
       y: {
         grid: {
-          color: "rgba(221, 161, 94, 0.1)",
+          color: "rgba(16, 185, 129, 0.16)",
           lineWidth: 1,
         },
         ticks: {
-          color: "#FEFAE0",
+          color: "#d1fae5",
           font: {
             size: 12,
           },

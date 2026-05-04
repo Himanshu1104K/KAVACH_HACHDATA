@@ -102,8 +102,8 @@ button {
 .ui-shell {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 10% 10%, rgba(107, 183, 183, 0.1), transparent 40%),
-    radial-gradient(circle at 85% 15%, rgba(79, 159, 159, 0.12), transparent 35%),
+    radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.13), transparent 38%),
+    radial-gradient(circle at 85% 15%, rgba(5, 150, 105, 0.14), transparent 35%),
     var(--black-primary);
 }
 
@@ -117,14 +117,14 @@ button {
 
 .ui-section-title {
   color: var(--white);
-  border-bottom: 1px solid rgba(180, 241, 235, 0.15);
+  border-bottom: 1px solid rgba(110, 231, 183, 0.18);
   padding-bottom: 0.75rem;
   letter-spacing: 0.03em;
 }
 
 .ui-nav-pill {
-  background: rgba(22, 36, 55, 0.72);
-  border: 1px solid rgba(180, 241, 235, 0.2);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(110, 231, 183, 0.22);
   box-shadow: 0 10px 25px rgba(7, 14, 27, 0.24);
 }
 
@@ -133,6 +133,6 @@ button {
 }
 
 .ui-nav-pill a:hover {
-  background: rgba(79, 159, 159, 0.2);
+  background: rgba(16, 185, 129, 0.18);
   color: var(--white);
 }

@@ -26,17 +26,17 @@ function StrikeList() {
         {sortedSoldiers.length > 0
           ? sortedSoldiers.map((soldier) => (
               <div
-                className="bg-[linear-gradient(145deg,rgba(22,36,55,0.8),rgba(37,52,74,0.9))] rounded-xl p-4 border border-[rgba(180,241,235,0.2)] hover:border-[rgba(180,241,235,0.45)] transition-all duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
+                className="bg-[linear-gradient(145deg,rgba(30,41,59,0.86),rgba(15,23,42,0.94))] rounded-xl p-4 border border-[rgba(110,231,183,0.2)] hover:border-[rgba(110,231,183,0.42)] transition-all duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
                 key={soldier.id}
                 onClick={() => navigate(`/SingleSol/${soldier.id}`)}
               >
                 <div className="flex items-center">
                   <div className={`flex items-center justify-center rounded-full w-12 h-12 mr-4 ${
                     soldier.efficiency < 30 
-                      ? 'bg-gradient-to-br from-[#c86a6a] to-[#a14f4f] text-white' 
+                      ? 'bg-gradient-to-br from-rose-500 to-rose-700 text-white' 
                       : soldier.efficiency > 70 
-                        ? 'bg-gradient-to-br from-[#64a88e] to-[#4d8d76] text-white' 
-                        : 'bg-gradient-to-br from-[#c7a56a] to-[#ab8850] text-white'
+                        ? 'bg-gradient-to-br from-emerald-400 to-emerald-700 text-white' 
+                        : 'bg-gradient-to-br from-amber-400 to-amber-600 text-white'
                   }`}>
                     {soldier.id}
                   </div>
@@ -46,20 +46,20 @@ function StrikeList() {
                     </div>
                     <div className={`text-lg font-bold ${
                       soldier.efficiency < 30 
-                        ? 'text-[#f2a7a7]' 
+                        ? 'text-rose-300' 
                         : soldier.efficiency > 70 
-                          ? 'text-[#9ee3c8]' 
-                          : 'text-[#f1cf8e]'
+                          ? 'text-emerald-300' 
+                          : 'text-amber-300'
                     }`}>
                       Efficiency: {soldier.efficiency}%
                     </div>
                     <div className="mt-1">
                       <span className={`text-xs font-semibold px-2 py-1 rounded-md ${
                         soldier.efficiency < 30
-                          ? "bg-[rgba(200,106,106,0.2)] text-[#f2a7a7]"
+                          ? "bg-[rgba(244,63,94,0.2)] text-rose-300"
                           : soldier.efficiency > 70
-                            ? "bg-[rgba(100,168,142,0.2)] text-[#9ee3c8]"
-                            : "bg-[rgba(199,165,106,0.2)] text-[#f1cf8e]"
+                            ? "bg-[rgba(16,185,129,0.2)] text-emerald-300"
+                            : "bg-[rgba(245,158,11,0.2)] text-amber-300"
                       }`}>
                         {getStatus(soldier.efficiency)}
                       </span>
@@ -74,7 +74,7 @@ function StrikeList() {
                 </div>
               </div>
             ))
-          : <div className="text-gray-light text-xl p-6 text-center bg-[rgba(22,36,55,0.82)] rounded-xl border border-[rgba(180,241,235,0.2)]">Loading or No Data</div>
+          : <div className="text-gray-light text-xl p-6 text-center bg-[rgba(30,41,59,0.82)] rounded-xl border border-[rgba(110,231,183,0.2)]">Loading or No Data</div>
         }
       </div>
     </>

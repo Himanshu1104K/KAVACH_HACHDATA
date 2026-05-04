@@ -3,10 +3,11 @@ import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import Tactics from "./pages/Tactics";
 import { createContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import MainDash from "./pages/MainDash";
 import SingleSol from "./pages/SingleSol";
 import useFetchData from "./customHooks/useFetchData";
+import SHMSLandingPage from "./components/ui/fin-tech-landing-page";
 export const AuthContext = createContext();
 
 function MainComponent() {
@@ -31,17 +32,22 @@ function MainComponent() {
             }}
           >
             <Routes>
+              <Route path="/" element={<SHMSLandingPage />} />
               <Route
-                path="/"
-                element={isAutenticated ? <MainDash /> : <LoginPage />}
+                path="/login"
+                element={isAutenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+              />
+              <Route
+                path="/dashboard"
+                element={isAutenticated ? <MainDash /> : <Navigate to="/login" replace />}
               />
               <Route
                 path="/SingleSol/:id"
-                element={isAutenticated ? <SingleSol /> : <LoginPage />}
+                element={isAutenticated ? <SingleSol /> : <Navigate to="/login" replace />}
               />
               <Route
                 path="/tactics"
-                element={isAutenticated ? <Tactics /> : <LoginPage />}
+                element={isAutenticated ? <Tactics /> : <Navigate to="/login" replace />}
               />
             </Routes>
           </AuthContext.Provider>
