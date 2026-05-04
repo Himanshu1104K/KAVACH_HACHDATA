@@ -1,10 +1,16 @@
 import { useMemo } from "react";
+import { motion } from "framer-motion";
 import { getSoldierNameById } from "../constants/soldierNames";
 import { convexHull } from "../lib/formationLayout";
 
 const CENTER_ID = 5;
 
 const BAND_LABELS = ["Tip", "Forward", "Core", "Support", "Rear"];
+
+/** SVG user-space springs — reads as smooth drift, not a hard tick */
+const spring = { type: "spring", stiffness: 155, damping: 20, mass: 0.78 };
+const lineSpring = { type: "spring", stiffness: 140, damping: 22, mass: 0.72 };
+const colorTween = { duration: 0.38, ease: [0.33, 1, 0.68, 1] };
 
 function statusForEfficiency(efficiency) {
   if (efficiency < 30) {
@@ -75,26 +81,29 @@ export default function FormationInfographic({ soldiers }) {
           {/* Depth bands: label + faint guide */}
           {bands.map(({ y, label }, i) => (
             <g key={`band-${i}-${label}`}>
-              <line
+              <motion.line
+                initial={false}
+                animate={{ y1: y, y2: y }}
+                transition={{ y1: lineSpring, y2: lineSpring }}
                 x1="14"
-                y1={y}
                 x2="98"
-                y2={y}
                 stroke="#94a3b8"
                 strokeWidth="0.12"
                 strokeOpacity="0.18"
                 strokeDasharray="1.2 1.2"
               />
-              <text
+              <motion.text
+                initial={false}
+                animate={{ y }}
+                transition={{ y: lineSpring }}
                 x="3"
-                y={y}
                 dominantBaseline="middle"
                 fill="#64748b"
                 style={{ fontSize: "2.6px", fontWeight: 600 }}
                 letterSpacing="0.04em"
               >
                 {label}
-              </text>
+              </motion.text>
             </g>
           ))}
 
@@ -103,12 +112,21 @@ export default function FormationInfographic({ soldiers }) {
             soldiers
               .filter((s) => s.id !== CENTER_ID)
               .map((s) => (
-                <line
+                <motion.line
                   key={`spoke-${s.id}`}
-                  x1={center.x}
-                  y1={center.y}
-                  x2={s.x}
-                  y2={s.y}
+                  initial={false}
+                  animate={{
+                    x1: center.x,
+                    y1: center.y,
+                    x2: s.x,
+                    y2: s.y,
+                  }}
+                  transition={{
+                    x1: lineSpring,
+                    y1: lineSpring,
+                    x2: lineSpring,
+                    y2: lineSpring,
+                  }}
                   stroke="#2dd4bf"
                   strokeWidth="0.32"
                   strokeOpacity="0.35"
@@ -136,28 +154,52 @@ export default function FormationInfographic({ soldiers }) {
             const r = isCenter ? 4.6 : 3.35;
             const name = getSoldierNameById(s.id);
             return (
-              <g key={s.id} transform={`translate(${s.x},${s.y})`}>
+              <g key={s.id}>
                 <title>{`${name} · ${s.efficiency}% vitals (${st.label})`}</title>
-                <circle r={r + 1.1} fill="none" stroke={st.stroke} strokeWidth="0.42" strokeOpacity="0.55" />
-                <circle r={r} fill={st.fill} stroke={st.stroke} strokeWidth="0.4" />
-                <text
+                <motion.circle
+                  r={r + 1.1}
+                  fill="none"
+                  strokeWidth="0.42"
+                  strokeOpacity={0.55}
+                  initial={false}
+                  animate={{ cx: s.x, cy: s.y, stroke: st.stroke }}
+                  transition={{ cx: spring, cy: spring, stroke: colorTween }}
+                />
+                <motion.circle
+                  r={r}
+                  strokeWidth="0.4"
+                  initial={false}
+                  animate={{ cx: s.x, cy: s.y, fill: st.fill, stroke: st.stroke }}
+                  transition={{
+                    cx: spring,
+                    cy: spring,
+                    fill: colorTween,
+                    stroke: colorTween,
+                  }}
+                />
+                <motion.text
                   textAnchor="middle"
                   dominantBaseline="central"
                   fill="#f8fafc"
                   style={{ fontSize: isCenter ? "3.1px" : "2.75px", fontWeight: 700 }}
+                  initial={false}
+                  animate={{ x: s.x, y: s.y }}
+                  transition={{ x: spring, y: spring }}
                 >
                   {s.id}
-                </text>
+                </motion.text>
                 {isCenter ? (
-                  <text
-                    y={r + 3.2}
+                  <motion.text
                     textAnchor="middle"
                     fill="#99f6e4"
                     style={{ fontSize: "2.1px", fontWeight: 600 }}
-                    opacity="0.92"
+                    opacity={0.92}
+                    initial={false}
+                    animate={{ x: s.x, y: s.y + r + 3.2 }}
+                    transition={{ x: spring, y: spring }}
                   >
                     Anchor
-                  </text>
+                  </motion.text>
                 ) : null}
               </g>
             );

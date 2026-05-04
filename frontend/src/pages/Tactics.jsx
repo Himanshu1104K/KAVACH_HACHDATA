@@ -112,7 +112,7 @@ const Tactics = () => {
               </button>
             </div>
 
-            <FormationInfographic key={layoutTick} soldiers={soldierPositions} />
+            <FormationInfographic soldiers={soldierPositions} />
           </section>
 
           <div id="insights" className="mb-8 grid scroll-mt-28 grid-cols-1 gap-6 md:grid-cols-3">
