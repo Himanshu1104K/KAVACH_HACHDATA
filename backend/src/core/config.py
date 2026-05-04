@@ -7,7 +7,7 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 os.environ["TF_FORCE_GPU_ALLOW_GROWTH"] = "false"
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
-TRAINED_MODELS_DIR = BACKEND_DIR / "Trained_Models"
+TRAINED_MODELS_DIR = BACKEND_DIR / "src" / "trained_models"
 
 MODEL_FILE = TRAINED_MODELS_DIR / "Efficiency_Model.keras"
 SCALER_FILE = TRAINED_MODELS_DIR / "Efficiency_Scaler.pkl"
