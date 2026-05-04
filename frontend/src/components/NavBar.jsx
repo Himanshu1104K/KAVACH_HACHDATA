@@ -1,157 +1,160 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/favicon.png";
+import {
+  LayoutDashboard,
+  LogOut,
+  Map,
+  Menu,
+  User,
+  X,
+} from "lucide-react";
+import { KavachMark } from "./KavachMark";
 import { AuthContext } from "../MainComponent";
+import { cn } from "../lib/utils";
 
-const NavBar = () => {
+const NAV_ITEMS = [
+  {
+    to: "/dashboard",
+    match: (p) => p === "/dashboard",
+    label: "Dashboard",
+    Icon: LayoutDashboard,
+  },
+  {
+    to: "/SingleSol/0",
+    match: (p) => p.startsWith("/SingleSol"),
+    label: "Soldier",
+    Icon: User,
+  },
+  {
+    to: "/tactics",
+    match: (p) => p === "/tactics",
+    label: "Formation",
+    Icon: Map,
+  },
+];
+
+export default function NavBar() {
   const { setAutenticated } = useContext(AuthContext);
-  const [isOpen, setIsOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  
-  // Handle scrolling effects
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [scrolled]);
-
-  // Close mobile menu when route changes
   useEffect(() => {
-    setIsOpen(false);
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
   }, [location.pathname]);
 
-  // Check if a link is active
-  const isActive = (path) => {
-    if (path === '/' && location.pathname === '/') return true;
-    if (path === '/SingleSol/0' && location.pathname.startsWith('/SingleSol')) return true;
-    if (path === '/tactics' && location.pathname === '/tactics') return true;
-    return false;
-  };
+  const shell = cn(
+    "fixed top-0 right-0 left-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-200",
+    scrolled
+      ? "border-[#2b4a70]/80 bg-[#050d18]/88 backdrop-blur-md"
+      : "border-transparent bg-[#050d18]/72 backdrop-blur-sm"
+  );
+
+  const linkBase =
+    "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-colors sm:px-3.5";
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled 
-        ? 'bg-[rgba(15,23,42,0.78)] backdrop-blur-md shadow-lg py-2 border-b border-[rgba(110,231,183,0.2)]' 
-        : 'bg-[rgba(15,23,42,0.56)] py-4'
-    }`}>
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4">
+    <nav className={shell} aria-label="Main">
+      <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-5">
         <Link
           to="/"
-          className="flex items-center space-x-3 rtl:space-x-reverse group"
+          className="group flex shrink-0 items-center gap-2.5 text-[#e8f2ff] sm:gap-3"
         >
-          <img 
-            src={logo} 
-            className="h-10 group-hover:rotate-12 transition-transform duration-300" 
-            alt="Kavach Logo" 
-          />
-          <span className="self-center text-2xl md:text-3xl uppercase font-bold text-white tracking-widest group-hover:text-gray-accent transition-colors duration-300">
+          <KavachMark className="transition-transform duration-200 group-hover:scale-[1.02]" />
+          <span className="text-base font-semibold tracking-wide sm:text-lg">
             Kavach
           </span>
         </Link>
-        
-        {/* Mobile menu button */}
-        <button
-          type="button"
-          className="md:hidden p-2 text-gray-lightest hover:text-white focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <span className="sr-only">Open main menu</span>
-          <div className="relative w-6 h-5">
-            <span className={`absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out ${isOpen ? 'rotate-45 translate-y-2' : '-translate-y-2'}`}></span>
-            <span className={`absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-            <span className={`absolute h-0.5 w-6 bg-current transform transition duration-300 ease-in-out ${isOpen ? '-rotate-45 translate-y-2' : 'translate-y-2'}`}></span>
+
+        {/* Desktop: segmented routes — same visual language as landing outline controls */}
+        <div className="hidden min-w-0 flex-1 justify-center md:flex">
+          <div
+            className="inline-flex max-w-full rounded-full border border-[#2b4a70]/90 bg-[#0a1628]/90 p-1 shadow-inner shadow-black/20"
+            role="tablist"
+            aria-label="App sections"
+          >
+            {NAV_ITEMS.map(({ to, match, label, Icon }) => {
+              const active = match(location.pathname);
+              return (
+                <Link
+                  key={to}
+                  to={to}
+                  className={cn(
+                    linkBase,
+                    active
+                      ? "bg-emerald-500/18 text-white ring-1 ring-emerald-500/35"
+                      : "text-[#8aa4c4] hover:bg-[#123059]/80 hover:text-[#e8f2ff]"
+                  )}
+                  aria-current={active ? "page" : undefined}
+                >
+                  <Icon className="size-4 shrink-0 opacity-90" strokeWidth={1.75} />
+                  {label}
+                </Link>
+              );
+            })}
           </div>
-        </button>
-        
-        <div className="flex md:order-2">
+        </div>
+
+        <div className="ml-auto flex shrink-0 items-center gap-2">
           <button
             type="button"
-            className="text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300 bg-gradient-to-r from-gray-medium to-emerald-800 hover:from-emerald-800 hover:to-gray-medium border border-[rgba(110,231,183,0.3)] hover:border-gray-light shadow-lg"
-            onClick={() => {
-              setAutenticated(false);
-            }}
+            className="flex size-9 items-center justify-center rounded-full border border-[#2b4a70] text-[#b8d7ff] transition hover:bg-[#123059] hover:text-white md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMenuOpen((o) => !o)}
           >
-            <span className="flex items-center">
-              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-              </svg>
-              Log Out
-            </span>
+            <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+
+          <button
+            type="button"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#2b4a70] px-3 py-2 text-xs font-medium text-[#b8d7ff] transition hover:bg-[#123059] hover:text-[#e8f2ff] sm:text-sm"
+            onClick={() => setAutenticated(false)}
+          >
+            <LogOut className="size-4 shrink-0 opacity-90" strokeWidth={1.75} />
+            <span className="hidden sm:inline">Log out</span>
           </button>
         </div>
-        
-        {/* Desktop Navigation */}
-        <div
-          className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
-            isOpen ? 'block' : 'hidden md:flex'
-          }`}
-        >
-          <ul className="flex flex-col font-medium pt-4 md:pt-0 mt-4 md:mt-0 border-t border-gray-dark md:border-0 md:flex-row md:space-x-1">
-            <li>
+      </div>
+
+      {/* Mobile panel */}
+      <div
+        id="mobile-nav"
+        className={cn(
+          "border-t border-[#2b4a70]/60 bg-[#050d18]/95 px-4 py-3 md:hidden",
+          menuOpen ? "block" : "hidden"
+        )}
+      >
+        <div className="mx-auto flex max-w-7xl flex-col gap-1 sm:px-1">
+          {NAV_ITEMS.map(({ to, match, label, Icon }) => {
+            const active = match(location.pathname);
+            return (
               <Link
-                to="/"
-                className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
-                  isActive('/') 
-                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
-                }`}
+                key={to}
+                to={to}
+                className={cn(
+                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                  active
+                    ? "bg-emerald-500/15 text-white ring-1 ring-emerald-500/30"
+                    : "text-[#8aa4c4] hover:bg-[#123059]/60 hover:text-[#e8f2ff]"
+                )}
+                aria-current={active ? "page" : undefined}
               >
-                <span className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                  </svg>
-                  Main Dashboard
-                </span>
+                <Icon className="size-4 shrink-0" strokeWidth={1.75} />
+                {label}
               </Link>
-            </li>
-            <li>
-              <Link
-                to="/SingleSol/0"
-                className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
-                  isActive('/SingleSol/0') 
-                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
-                }`}
-              >
-                <span className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                  </svg>
-                  Soldier Dashboard
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/tactics"
-                className={`block py-3 px-4 rounded-lg text-base transition-all duration-300 ${
-                  isActive('/tactics') 
-                    ? 'bg-[rgba(16,185,129,0.2)] text-white font-bold border border-[rgba(110,231,183,0.24)]' 
-                    : 'text-gray-lightest hover:bg-[rgba(16,185,129,0.16)] hover:text-white'
-                }`}
-              >
-                <span className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
-                  </svg>
-                  Battle Formation
-                </span>
-              </Link>
-            </li>
-          </ul>
+            );
+          })}
         </div>
       </div>
     </nav>
   );
-};
-
-export default NavBar;
+}

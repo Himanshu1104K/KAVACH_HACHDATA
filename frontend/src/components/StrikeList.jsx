@@ -26,7 +26,7 @@ function StrikeList() {
         {sortedSoldiers.length > 0
           ? sortedSoldiers.map((soldier) => (
               <div
-                className="bg-[linear-gradient(145deg,rgba(30,41,59,0.86),rgba(15,23,42,0.94))] rounded-xl p-4 border border-[rgba(110,231,183,0.2)] hover:border-[rgba(110,231,183,0.42)] transition-all duration-300 shadow-lg transform hover:scale-105 cursor-pointer"
+                className="cursor-pointer transform rounded-xl border border-emerald-500/12 bg-[linear-gradient(145deg,rgba(30,41,59,0.9),rgba(15,23,42,0.96))] p-4 shadow-lg transition-all duration-300 hover:border-emerald-400/35 hover:shadow-emerald-950/15 hover:scale-[1.02]"
                 key={soldier.id}
                 onClick={() => navigate(`/SingleSol/${soldier.id}`)}
               >

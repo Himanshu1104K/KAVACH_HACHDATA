@@ -1,4 +1,3 @@
-import { useState } from "react";
 import NavBar from "../components/NavBar";
 import PageTransition from "../components/PageTransition";
 import useFetchTactics from "../customHooks/useFetchTactics";
@@ -75,23 +74,14 @@ const Tactics = () => {
     <div className="ui-shell min-h-screen">
       <NavBar />
       
-      <div className="container mx-auto px-4 pt-24 pb-8">
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-5 sm:pt-20">
         <PageTransition>
-          <h1 className="text-5xl font-bold text-center text-white mb-6 tracking-wider">
-            BATTLE FORMATION
+          <h1 className="mb-5 text-xl font-semibold tracking-tight text-white sm:mb-6 sm:text-2xl">
+            Battle formation
           </h1>
-          
-          {/* Quick Navigation - Demonstrates smooth scrolling */}
-          <div className="flex justify-center mb-8">
-            <div className="ui-nav-pill rounded-xl p-2 inline-flex gap-3">
-              <a href="#formation" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Formation</a>
-              <a href="#insights" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Insights</a>
-              <a href="#details" className="text-gray-lightest hover:text-white hover:bg-gray-dark px-4 py-2 rounded-md transition-all duration-200">Details</a>
-            </div>
-          </div>
-          
-          <div id="formation" className="ui-panel p-8 mb-8 scroll-mt-32">
-            <div className="flex flex-col md:flex-row items-center justify-between mb-6 pb-6 border-b border-gray-medium">
+
+          <div id="formation" className="ui-panel mb-8 scroll-mt-28 p-6 transition hover:border-emerald-500/30 sm:p-8">
+            <div className="mb-6 flex flex-col items-center justify-between gap-4 border-b border-emerald-500/15 pb-6 md:flex-row">
               <div>
                 <h2 className="text-3xl font-bold text-white mb-2">
                   {isLoading ? "Loading..." : error ? "Formation Not Available" : formation?.formation || "Standard Formation"}
@@ -102,7 +92,10 @@ const Tactics = () => {
               </div>
               
               <div className="mt-4 md:mt-0">
-                <button className="bg-gray-medium hover:bg-gray-light text-white font-bold py-3 px-6 rounded-lg transition duration-300 flex items-center">
+                <button
+                  type="button"
+                  className="flex items-center rounded-full border border-emerald-500/30 bg-gradient-to-r from-emerald-800 to-emerald-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-950/25 transition hover:from-emerald-700 hover:to-emerald-800"
+                >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                   </svg>
@@ -112,7 +105,7 @@ const Tactics = () => {
             </div>
             
             {/* Tactical Field Representation */}
-            <div className="relative w-full h-[60vh] bg-gray-dark bg-opacity-40 rounded-lg border border-gray-medium overflow-hidden">
+            <div className="relative h-[60vh] w-full overflow-hidden rounded-xl border border-emerald-500/15 bg-slate-900/50">
               {/* Terrain overlay - grid pattern */}
               <div className="absolute inset-0 grid grid-cols-10 grid-rows-10">
                 {Array.from({ length: 100 }).map((_, i) => (
@@ -194,8 +187,8 @@ const Tactics = () => {
           </div>
           
           {/* Battle Insights Panel */}
-          <div id="insights" className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 scroll-mt-32">
-            <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
+          <div id="insights" className="mb-8 grid scroll-mt-28 grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="ui-panel p-6 transition-all duration-300 hover:border-emerald-500/30">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-red-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
@@ -210,7 +203,7 @@ const Tactics = () => {
               <p className="text-xs text-gray-light">75% favorable conditions</p>
             </div>
             
-            <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
+            <div className="ui-panel p-6 transition-all duration-300 hover:border-emerald-500/30">
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"></path>
@@ -224,7 +217,10 @@ const Tactics = () => {
               <p className="text-xs text-gray-light">{formatStrikeSuccess()} strike success probability</p>
             </div>
             
-            <div id="details" className="ui-panel p-6 hover:border-gray-medium transition-all duration-300 scroll-mt-32">
+            <div
+              id="details"
+              className="ui-panel scroll-mt-28 p-6 transition-all duration-300 hover:border-emerald-500/30"
+            >
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
                 <svg className="w-5 h-5 mr-2 text-blue-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1H9z" clipRule="evenodd"></path>
@@ -242,7 +238,10 @@ const Tactics = () => {
           
           {/* Back to top button */}
           <div className="flex justify-center mt-10">
-            <a href="#" className="bg-gray-medium hover:bg-gray-light text-white rounded-full p-3 shadow-lg transition-all duration-300 hover:shadow-xl">
+            <a
+              href="#"
+              className="rounded-full border border-emerald-500/25 bg-gradient-to-r from-emerald-800 to-emerald-900 p-3 text-white shadow-lg shadow-emerald-950/30 transition hover:border-emerald-400/40"
+            >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
               </svg>

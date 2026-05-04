@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { KavachMark } from "../KavachMark";
 import { KavachFooter } from "./kavach-footer";
 
 const IconShieldCheck = ({ className = "" }) => (
@@ -208,10 +209,8 @@ export default function KavachLandingPage() {
       <div className="font-jakarta">
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-6">
           <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-lg bg-emerald-900/80 text-emerald-200 ring-1 ring-emerald-500/30">
-              <IconShieldCheck className="h-5 w-5" />
-            </div>
-            <span className="text-lg font-semibold tracking-wide">Kavach</span>
+            <KavachMark />
+            <span className="text-lg font-semibold tracking-wide text-[#e8f2ff]">Kavach</span>
           </div>
           <div className="flex items-center gap-2">
             <Link

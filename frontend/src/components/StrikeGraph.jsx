@@ -165,7 +165,7 @@ const StrikeGraph = () => {
   };
 
   return (
-    <div className="ui-panel p-6 hover:border-gray-medium transition-all duration-300">
+    <div className="ui-panel p-6 transition-all duration-300 hover:border-emerald-500/30">
       <h3 className="ui-section-title text-white text-xl font-semibold mb-6">
         Strike Success Probability
       </h3>

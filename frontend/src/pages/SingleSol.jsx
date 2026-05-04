@@ -20,8 +20,15 @@ const SingleSol = () => {
     isNaN(soldierIndex)
   ) {
     return (
-      <div className="text-center text-2xl mt-24 pt-10 transition-opacity duration-1000 opacity-70">
-        Loading or No Data Found
+      <div className="ui-shell min-h-screen">
+        <NavBar />
+        <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 pt-16 sm:pt-20">
+          <div className="ui-panel max-w-md px-8 py-10 text-center">
+            <div className="mx-auto mb-4 h-10 w-10 animate-spin rounded-full border-2 border-emerald-500/30 border-t-emerald-400" />
+            <p className="text-lg font-semibold text-white">Loading soldier data</p>
+            <p className="mt-2 text-sm text-slate-400">Waiting for command telemetry…</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -48,13 +55,13 @@ const SingleSol = () => {
   return (
     <div className="ui-shell min-h-screen">
       <NavBar />
-      <div className="container mx-auto px-6 pt-24 pb-8">
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-16 sm:px-6 sm:pt-20">
         <PageTransition>
-          <h2 className="mainDH text-4xl text-center mb-10 text-white font-bold">
-            SINGLE SOLDIER DASHBOARD
+          <h2 className="mb-5 text-xl font-semibold tracking-tight text-white sm:mb-6 sm:text-2xl">
+            Soldier detail
           </h2>
-          
-          <div className="flex flex-col lg:flex-row gap-8 mb-10">
+
+          <div className="mb-8 flex flex-col gap-8 lg:flex-row">
             {/* Left side - Vital metrics grid */}
             <div className="w-full lg:w-2/5 grid grid-cols-2 gap-4">
               <div 
