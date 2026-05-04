@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import MainDash from "./pages/MainDash";
 import SingleSol from "./pages/SingleSol";
 import useFetchData from "./customHooks/useFetchData";
-import SHMSLandingPage from "./components/ui/fin-tech-landing-page";
+import KavachLandingPage from "./components/ui/fin-tech-landing-page";
 export const AuthContext = createContext();
 
 function MainComponent() {
@@ -32,7 +32,7 @@ function MainComponent() {
             }}
           >
             <Routes>
-              <Route path="/" element={<SHMSLandingPage />} />
+              <Route path="/" element={<KavachLandingPage />} />
               <Route
                 path="/login"
                 element={isAutenticated ? <Navigate to="/dashboard" replace /> : <LoginPage />}
