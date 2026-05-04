@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { KavachMark } from "../KavachMark";
 import { KavachFooter } from "./kavach-footer";
+import image from "../../assets/image.png";
 
 const IconShieldCheck = ({ className = "" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -326,7 +327,7 @@ export default function KavachLandingPage() {
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-[#2b4a70]">
               <img
-                src="src/assets/Gemini_Generated_Image_jmia3ajmia3ajmia.png"
+                src={image}
                 alt="Clinical monitoring context for Kavach defence health platform"
                 className="h-full min-h-[280px] w-full object-cover lg:min-h-full"
                 loading="lazy"
