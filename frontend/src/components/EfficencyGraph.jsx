@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -19,11 +19,27 @@ ChartJS.register(
   Legend
 );
 import { AuthContext } from "../MainComponent";
-import { useContext } from "react";
+import {
+  GraphSeriesContext,
+  DASHBOARD_EFFICIENCY_SNAPSHOT_KEY,
+} from "../context/GraphSeriesContext";
 import { getSoldierNameById } from "../constants/soldierNames";
 
 const EfficencyGraph = () => {
   const { solData } = useContext(AuthContext);
+  const { snapshots, setSnapshot } = useContext(GraphSeriesContext);
+
+  useEffect(() => {
+    const preds = solData?.efficiency_predictions;
+    if (preds?.length) {
+      setSnapshot(DASHBOARD_EFFICIENCY_SNAPSHOT_KEY, preds);
+    }
+  }, [solData?.efficiency_predictions, setSnapshot]);
+
+  const predictions =
+    solData?.efficiency_predictions ??
+    snapshots[DASHBOARD_EFFICIENCY_SNAPSHOT_KEY] ??
+    [];
   
   const options = {
     responsive: true,
@@ -121,20 +137,20 @@ const EfficencyGraph = () => {
     datasets: [
       {
         label: "Efficiency (%)",
-        data: solData?.efficiency_predictions || [],
-        backgroundColor: solData?.efficiency_predictions.map((eff) => {
+        data: predictions,
+        backgroundColor: predictions.map((eff) => {
           return eff < 30 ? "rgba(251, 113, 133, 0.84)" :
                  eff > 70 ? "rgba(52, 211, 153, 0.84)" :
                  "rgba(250, 204, 21, 0.84)";
         }),
-        borderColor: solData?.efficiency_predictions.map((eff) => {
+        borderColor: predictions.map((eff) => {
           return eff < 30 ? "rgba(225, 29, 72, 1)" :
                  eff > 70 ? "rgba(5, 150, 105, 1)" :
                  "rgba(202, 138, 4, 1)";
         }),
         borderWidth: 2,
         borderRadius: 6,
-        hoverBackgroundColor: solData?.efficiency_predictions.map((eff) => {
+        hoverBackgroundColor: predictions.map((eff) => {
           return eff < 30 ? "rgba(251, 113, 133, 1)" : 
                  eff > 70 ? "rgba(52, 211, 153, 1)" : 
                  "rgba(250, 204, 21, 1)";

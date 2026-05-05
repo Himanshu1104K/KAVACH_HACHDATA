@@ -1,5 +1,6 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../MainComponent";
+import { GraphSeriesContext, graphSeriesCacheKey } from "../context/GraphSeriesContext";
 import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
 import {
@@ -27,37 +28,31 @@ const DynamicGraph = ({ selectedMetric }) => {
   const { id } = useParams();
   const soldierIndex = parseInt(id) === 0 ? 0 : parseInt(id) - 1;
   const { solData } = useContext(AuthContext);
-  const [chartData, setChartData] = useState([]);
+  const { seriesMap, appendPoint } = useContext(GraphSeriesContext);
+  const cacheKey = graphSeriesCacheKey(soldierIndex, selectedMetric);
+  const chartData = seriesMap[cacheKey] ?? [];
 
   useEffect(() => {
     if (solData !== undefined) {
       try {
-        setChartData((prevData) => {
-          let newValue;
-          
-          // Special handling for efficiency_predictions which is at the root level
-          if (selectedMetric === "efficiency_predictions") {
-            newValue = solData.efficiency_predictions[soldierIndex];
-          } 
-          // Handle all other metrics which are in soldier_data object with nested structure
-          else if (solData.soldier_data && solData.soldier_data[selectedMetric]) {
-            // Convert soldierIndex to string since the API keys are strings
-            const strIndex = soldierIndex.toString();
-            newValue = Math.floor(solData.soldier_data[selectedMetric][strIndex] || 0);
-          } else {
-            newValue = 0;
-          }
-          
-          const newData = [...prevData, newValue];
-          if (newData.length > 10) newData.shift();
-          return newData;
-        });
+        let newValue;
+
+        if (selectedMetric === "efficiency_predictions") {
+          newValue = solData.efficiency_predictions[soldierIndex];
+        } else if (solData.soldier_data && solData.soldier_data[selectedMetric]) {
+          const strIndex = soldierIndex.toString();
+          newValue = Math.floor(solData.soldier_data[selectedMetric][strIndex] || 0);
+        } else {
+          newValue = 0;
+        }
+
+        appendPoint(cacheKey, newValue);
       } catch (error) {
         console.error("Error updating chart data:", error);
-        setChartData([0]); // Fallback to prevent UI breaking
+        appendPoint(cacheKey, 0);
       }
     }
-  }, [solData, selectedMetric, soldierIndex]);
+  }, [solData, selectedMetric, soldierIndex, cacheKey, appendPoint]);
 
   // Generate labels for x-axis
   const labels = chartData.map((_, index) => index + 1);

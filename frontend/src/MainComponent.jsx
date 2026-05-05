@@ -8,6 +8,8 @@ import MainDash from "./pages/MainDash";
 import SingleSol from "./pages/SingleSol";
 import useFetchData from "./customHooks/useFetchData";
 import KavachLandingPage from "./components/ui/fin-tech-landing-page";
+import { GraphSeriesProvider } from "./context/GraphSeriesContext";
+
 export const AuthContext = createContext();
 
 function MainComponent() {
@@ -32,6 +34,7 @@ function MainComponent() {
               solData,
             }}
           >
+            <GraphSeriesProvider>
             <Routes>
               <Route path="/" element={<KavachLandingPage />} />
               <Route
@@ -51,6 +54,7 @@ function MainComponent() {
                 element={isAutenticated ? <Tactics /> : <Navigate to="/login" replace />}
               />
             </Routes>
+            </GraphSeriesProvider>
           </AuthContext.Provider>
         </div>
       </Router>

@@ -4,6 +4,7 @@ import axios from "axios";
 const useFetchStrike = (url) => {
   const {
     data: strike,
+    dataUpdatedAt,
     isLoading,
     error,
   } = useQuery({
@@ -24,7 +25,7 @@ const useFetchStrike = (url) => {
     refetchInterval: 5000,
   });
 
-  return { strike, error, isLoading };
+  return { strike, dataUpdatedAt, error, isLoading };
 };
 
 export default useFetchStrike;

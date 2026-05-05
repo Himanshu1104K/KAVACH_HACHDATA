@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import useFetchStrike from "../customHooks/useFetchStrike";
+import { GraphSeriesContext, DASHBOARD_STRIKE_SERIES_KEY } from "../context/GraphSeriesContext";
 
 ChartJS.register(
   CategoryScale,
@@ -23,29 +24,21 @@ ChartJS.register(
 );
 
 const StrikeGraph = () => {
-  const { strike } = useFetchStrike(
+  const { strike, dataUpdatedAt } = useFetchStrike(
     // "https://kavach-backend-production.up.railway.app/strike_efficiency"
     // "http://127.0.0.1:8000/strike_efficiency"
     "https://welcomed-wildcat-actively.ngrok-free.app/strike_efficiency"
   );
+  const { seriesMap, appendPointAfterQuery } = useContext(GraphSeriesContext);
+  const chartData = seriesMap[DASHBOARD_STRIKE_SERIES_KEY] ?? [];
 
-  // Initialize state to hold the strike data points
-  const [chartData, setChartData] = useState([]);
-
-  // Effect to update the chart data when strike changes
   useEffect(() => {
-    if (strike?.strike_success_probability !== undefined) {
-      setChartData((prevData) => {
-        // Append new strike value
-        const newData = [...prevData, strike?.strike_success_probability];
-        // If the array length exceeds 10, remove the first element
-        if (newData.length > 10) {
-          newData.shift();
-        }
-        return newData;
-      });
-    }
-  }, [strike?.strike_success_probability]);
+    appendPointAfterQuery(
+      DASHBOARD_STRIKE_SERIES_KEY,
+      strike?.strike_success_probability,
+      dataUpdatedAt
+    );
+  }, [strike?.strike_success_probability, dataUpdatedAt, appendPointAfterQuery]);
 
   // Generate labels dynamically based on the chartData length or any other logic
   const labels = chartData.map((_, index) => `Update ${index + 1}`);
